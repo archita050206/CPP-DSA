@@ -18,12 +18,16 @@ class student{
         roll=r;
         age=a;
     }
+    student(student &r1){//copy constructor
+        name=r1.name;
+    }
     void print(){
         cout<<"Name: "<<name<<endl;
         cout<<"Roll :"<<roll<<endl;        
         cout<<"Age :"<<age<<endl;        
 
     }
+
 };
 int main(){
    
@@ -33,4 +37,6 @@ int main(){
     cin>>r>>a;
     student s1(n,r,a);
     s1.print();
+    student st(s1);//copy constructor
+    cout<<st.name;
 }
