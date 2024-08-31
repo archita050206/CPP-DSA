@@ -20,6 +20,7 @@ class student{
     }
     student(student &r1){//copy constructor
         name=r1.name;
+        age=r1.age;
     }
     void print(){
         cout<<"Name: "<<name<<endl;
