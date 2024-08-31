@@ -1,3 +1,7 @@
+//created inside class
+//one class can have multiple constructors(constructor oerloading), first write default constructor and then overload it
+
+
 #include<iostream>
 #include<string>
 using namespace std;
@@ -6,22 +10,27 @@ class student{
     string name;
     int roll;
     int age;
+    student(){
+        cout<<"This is default constructor";
+    }
+    student(string n, int r, int a){
+        name=n;
+        roll=r;
+        age=a;
+    }
+    void print(){
+        cout<<"Name: "<<name<<endl;
+        cout<<"Roll :"<<roll<<endl;        
+        cout<<"Age :"<<age<<endl;        
+
+    }
 };
 int main(){
-    student s1;
-    student s2;
-    student s3;
-    //getline(cin,s1.name);
-    cin>>s1.name;
-    cin>>s1.roll;
-    cin>>s1.age;
-    //getline(cin,s2.name);
-    cin>>s2.name;
-    cin>>s2.roll;
-    cin>>s2.age;
-    //getline(cin,s3.name);
-    cin>>s3.name;
-    cin>>s3.roll;
-    cin>>s3.age;
-    cout<<s1.name;
+   
+    string n;
+    int r,a;
+    getline(cin,n);
+    cin>>r>>a;
+    student s1(n,r,a);
+    s1.print();
 }
