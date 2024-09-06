@@ -43,6 +43,30 @@ class LinkedList{
         }
         cout<<"nullptr";
     }
+    void deleted(int key){
+        if(head->data==key){
+            node *t=head;
+            head=head->next;
+            head->prev=nullptr;
+            delete t;
+            return;
+        }
+        node *temp=head;
+        while(temp->next->data!=key){
+            temp=temp->next;
+        }
+        node *t=temp->next;
+        temp->next=temp->next->next;
+        delete t;
+    }
+    int search(int key){
+        node *temp=head;
+        while(temp){
+            if(temp->data==key)return 1;
+            temp=temp->next;
+        }
+        return 0;
+    }
 
 };
 int main(){
@@ -52,4 +76,9 @@ int main(){
     l.insert(3);
 
     l.display();
+    cout<<endl;
+    //l.deleted(1);
+    //l.display();
+    cout<<endl;
+    l.search(5)==1?cout<<"present":cout<<"Not present";
 }
