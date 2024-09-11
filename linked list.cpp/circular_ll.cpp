@@ -35,6 +35,18 @@ class LinkedList{
         }
 
     }
+    void dlthead(){
+        if(!head)return;
+        node *n=head->next;
+        node *t=head;
+        while(t->next!=head){
+            t=t->next;
+        }
+        node *d=t->next;
+        t->next=d->next;
+        delete d;
+        head=n;
+    }
     void display(){
         if(!head)return;
         node *t=head;
@@ -42,7 +54,17 @@ class LinkedList{
             cout<<t->data<<"->";
             t=t->next;
         }while(t!=head);
-        //cout<<"nullptr";
+        cout<<"nullptr";
+    }
+    bool detectloop(){
+        node *slow=head;
+        node *fast=head;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)return true;
+        }
+        return false;
     }
 };
 int main(){
@@ -51,5 +73,10 @@ int main(){
     li.insert(2);
     li.insert(3);
     li.display();
-    cout<<"yes";
+
+    cout<<endl;
+    li.dlthead();
+    li.display();
+    cout<<endl;
+    li.detectloop()==1?cout<<"true":cout<<"false";
 }
