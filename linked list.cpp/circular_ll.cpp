@@ -37,15 +37,16 @@ class LinkedList{
     }
     void dlthead(){
         if(!head)return;
-        node *n=head->next;
+        
         node *t=head;
         while(t->next!=head){
             t=t->next;
         }
-        node *d=t->next;
+        node *d=head;
         t->next=d->next;
+        head=head->next;
         delete d;
-        head=n;
+        
     }
     void display(){
         if(!head)return;
@@ -66,12 +67,57 @@ class LinkedList{
         }
         return false;
     }
+    void deletion(int key){
+        node *fast=head;
+        while(fast->next!=head){
+            if(fast->next->data==key){
+                node *t=fast->next;
+                fast->next=t->next;
+                delete t;
+                return;
+            }
+            fast=fast->next;
+        }
+        
+    }
+    node* whereloop(){//considering loop already present, floyd's algorithhm
+        if(!head)return nullptr;
+        node *fast=head;
+        node *slow=head;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(fast==slow){
+                
+                break;
+            }
+            
+        }
+        if(slow!=fast)return nullptr;
+        slow=head;
+        while(slow!=fast){
+            slow=slow->next;
+            fast=fast->next;
+            
+        }
+        return slow;
+
+    }
+    void removeloop(){
+        node *t=whereloop();
+        if(!t)return;
+        node *p=t;
+        while(p->next!=t){
+            p=p->next;
+        }
+        p->next=nullptr;
+    }
 };
 int main(){
     LinkedList li;
-    li.insert(1);
-    li.insert(2);
-    li.insert(3);
+    for(int i=0;i<10;i++){
+        li.insert(i);
+    }
     li.display();
 
     cout<<endl;
@@ -79,4 +125,11 @@ int main(){
     li.display();
     cout<<endl;
     li.detectloop()==1?cout<<"true":cout<<"false";
+    cout<<endl;
+    li.deletion(3);
+    li.display();
+    cout<<endl;
+    node *p=li.whereloop();
+    cout<<p->data<<endl;
+    li.removeloop();
 }
