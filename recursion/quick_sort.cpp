@@ -2,13 +2,14 @@
 using namespace std;
 int partition(int arr[], int s, int e){
     //find pivot: first element
-    int pivot=arr[0];
+    int pivot=arr[s];
     //count how many ele less than pivot
     int count=0;
     for(int i=s+1;i<=e;i++){
         if(arr[i]<=pivot)count++;
     }
     int pivotIndex=s+count;
+    swap(arr[s],arr[pivotIndex]);
     //handling the right and left in which all elements 
     //should be greater and less respectively
     int i=s;
@@ -27,7 +28,7 @@ void quicksort(int arr[],int s, int e){
     quicksort(arr,p+1,e);
 }
 int main(){
-    int arr[5]={5,4,3,2,1};
+    int arr[5]={5,3,1,2,4};
     quicksort(arr,0,4);
     for(int i=0;i<5;i++){
         cout<<arr[i]<<' ';
