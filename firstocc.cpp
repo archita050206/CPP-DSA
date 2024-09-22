@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 int main(){
-    int arr[]={1,2,3,4,4,3,2,1};
+    int arr[]={1,2,3,4,1,3,2,1};
     int n=7;
     int x=1;
     int foc=-1;
@@ -15,17 +15,12 @@ int main(){
     }
     cout<<foc;
     int loc=-1;
-    for(int j=foc+1;j<=n;j++){
-        if(arr[j]==x){
-            loc=j;
+    //1 1 1 1 2 2 3 1 =7
+    for(int i=7;i>=0;i--){
+        if(arr[i]==x){
+            loc=i;
             break;
         }
     }
-    cout<<endl;
-    if(loc==-1){
-        cout<<"No last occurence";
-    }
-    else{
-        cout<<loc;
-    }
+    cout<<loc;
 }
