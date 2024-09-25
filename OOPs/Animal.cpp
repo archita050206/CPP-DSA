@@ -109,4 +109,5 @@ int main(){
     flyrep.glide();
 
 }
-
+// Multpiple inheritance: multiple parents one child
+//Hierarchial inheritance: one parent multiple children
