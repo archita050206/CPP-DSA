@@ -35,7 +35,7 @@ bool  isBalanced(string str){
     return flag;
 }
 int main(){
-    string str="{[[()]]}";
+    string str="{}";
     bool b=isBalanced(str);
-    cout<<b;
+    (b==0)?cout<<"not balanced":cout<<"balanced";
 }
