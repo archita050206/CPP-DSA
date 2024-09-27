@@ -6,6 +6,7 @@ int main(){
     for(int i=1;i<10;i++){
         q1.push(i);
     }
+    
     cout<<q1.front()<<endl;
     q1.pop();
     cout<<q1.front()<<endl;
