@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
-class MasterZombie{
+class MasterZombie{//abstract class: class containing pure virtual function
     public:
     string name="Zaza";
     int height=50;
@@ -10,6 +10,7 @@ class MasterZombie{
     virtual void changeHealth(){
         power-=20;
     }
+    virtual void infection() =0;//pure virtual function
 };
 class zombie1 : public MasterZombie{
     string description;
@@ -25,6 +26,7 @@ class zombie2: public MasterZombie{
     void changeHealth() override{
         cout<<"Health";
     }
+    
 };
 int main(){
     zombie1 z;
