@@ -77,6 +77,7 @@
 
 
 #include<iostream>
+#include<vector>
 #include<string>
 using namespace std;
 class Hero{
@@ -117,9 +118,12 @@ class Hero{
         cout<<"At level "<<level<<endl;
         cout<<"Class: "<<classType<<endl;
         cout<<"Health: "<<health<<endl;
+        
         if(name=="Spellcaster"){
         cout<<"mana of spellcaster is : "<<mana<<endl;
         }
+        cout<<"Strength: "<<strength<<endl;
+        cout<<"Magical power : "<<magic<<endl;
         cout<<"Defense rating of "<<name<<" is : "<<defense<<endl;
         if(available==true)cout<<name<<" is available"<<endl;
         else cout<<name<<" is not available"<<endl;
@@ -127,28 +131,39 @@ class Hero{
     }
 
     void levelUp(){
-
+        level+=1;
+        strength+=5;
+        magic+=3;
+        defense+=4;
+        cout<<"Leveling up! "<<name<<" at level "<<level<<endl;
+        cout<<name<<" got more stronger! strength is "<<strength<<endl;
+        cout<<"More magical power to you! "<<name<<"'s new magical power is "<<magic<<endl;
+        cout<<name<<" got more defense power! defense power inscreased to: "<<defense<<endl;
     }
     void takeDamage(int damage){
-
+        health-=damage;
+        cout<<name<<" has been attacked! current health is "<<health<<endl;    
     }
     void restoreHealth(int hp){
-
+        health+=hp;
+        cout<<"Health restored to some extent, curren health point is "<<health<<endl;
     }
     void assignToFortress(Fortress& fortress){
-
+        fortress.addHero(*this);
+        available=false;
+        cout<<name<<" assigned to fortress, hero no longer available"<<endl;
     }
     void fightEnemy(Enemy& enemy){
 
     }
 };
 class Fortress{
-    private:
+    public:
     int fortressID;
     string location;
     int defenseRating;
     int capacity;
-    string currentHeroes[100];
+    vector<string>currentHeroes;
     public:
     void addHero(Hero& hero){
 
