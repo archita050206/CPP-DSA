@@ -8,6 +8,7 @@ int partition(int arr[], int s, int e){
     for(int i=s+1;i<=e;i++){
         if(arr[i]<=pivot)count++;
     }
+    //swap the lement at that position such that pivot goes to the correct position
     int pivotIndex=s+count;
     swap(arr[s],arr[pivotIndex]);
     //handling the right and left in which all elements 
