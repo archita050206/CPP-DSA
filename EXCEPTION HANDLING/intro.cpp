@@ -32,7 +32,7 @@ int main()
     cin>>denominator;
     try{
         if(denominator==0){
-            throw runtime_error("");
+            throw 0;
         }
         //if try is true it goes directly to the catch section and ignores the further calculation steps
         cout<<"Proceeding to next calculation"<<endl;
