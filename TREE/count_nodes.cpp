@@ -18,6 +18,12 @@ int SumofNodes(Node *root){
     if(root==nullptr)return 0;
     return SumofNodes(root->left)+SumofNodes(root->right)+root->data;
 }
+int height(Node *root){
+    if(root==nullptr)return 0;
+    int left=height(root->left);
+    int right=height(root->right);
+    return max(left,right)+1;
+}
 int main(){
     Node *root=new Node(1);
     root->left=new Node(2);
@@ -31,4 +37,6 @@ int main(){
     cout<<x<<endl;
     int y=SumofNodes(root);
     cout<<y<<endl;
+    int z=height(root);
+    cout<<z<<endl;
 }
