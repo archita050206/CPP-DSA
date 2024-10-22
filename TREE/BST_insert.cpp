@@ -31,6 +31,17 @@ void inOrder(Node *root){
     cout<<root->data<<' ';
     inOrder(root->right);
 }
+int maxVal(Node *root){
+    if(!root)return -1;
+
+    if(root->right==NULL)return root->data;
+    maxVal(root->right);
+}
+int minVal(Node *root){
+    if(!root)return -1;
+    if(root->left==NULL)return root->data;
+    minVal(root->left);
+}
 int main(){
     Node *root=NULL;
     root=insert(root,5);
@@ -40,4 +51,9 @@ int main(){
     insert(root,2);
     insert(root,7);
     inOrder(root);
+    cout<<endl;
+    int x=maxVal(root);
+    cout<<x<<endl;
+    int y=minVal(root);
+    cout<<y<<endl;
 }
