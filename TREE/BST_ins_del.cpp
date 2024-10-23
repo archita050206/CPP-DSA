@@ -85,6 +85,19 @@ bool search(Node *root,int val){
     }
     return false;
 }
+Node* searchVal(Node *root,int val){
+    if(!root)return nullptr;
+    if(root->data==val){
+        return root;
+    }
+    if(val<root->data){
+        return searchVal(root->left,val);
+    }
+    else{
+        return searchVal(root->right,val);
+    }
+    
+}
 int main(){
     Node *root=nullptr;
     int n,x;
@@ -100,4 +113,7 @@ int main(){
     lvlOrder(root);
     bool b=search(root,3);
     cout<<b<<endl;
+    Node *p=searchVal(root,3);
+    if(!p)cout<<"Not present"<<endl;
+    else cout<<"Present";
 }
