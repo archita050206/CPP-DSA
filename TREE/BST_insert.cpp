@@ -32,15 +32,59 @@ void inOrder(Node *root){
     inOrder(root->right);
 }
 int maxVal(Node *root){
-    if(!root)return -1;
-
-    if(root->right==NULL)return root->data;
-    maxVal(root->right);
+    if (!root) return -1;
+    while (root->right) {
+        root = root->right;
+    }
+    return root->data;
 }
 int minVal(Node *root){
     if(!root)return -1;
-    if(root->left==NULL)return root->data;
-    minVal(root->left);
+    while(root->left){
+        root=root->left;
+    }
+    return root->data;
+}
+Node* findmin(Node *root){
+    if(!root)return nullptr;
+    while(root->left){
+        root=root->left;
+    }
+    return root;
+}
+Node* deletion(Node *root, int key){
+    if(!root)return NULL;
+    if(key<root->data){
+        root->left=deletion(root->left,key);
+    }
+    else if(key>root->data){
+        root->right=deletion(root->right,key);
+    }
+    else{/*
+        //no child
+        if(!root->left && !root->right){
+            delete root;
+            return  NULL;
+        }
+        */
+        //one child
+        if(!root->left){
+            Node *temp=root->right;
+            delete root;
+            return temp;
+        }
+        else if(!root->right){
+            Node *temp=root->left;
+            delete root;
+            return temp;
+        }
+        
+            Node *temp=findmin(root->right);
+            root->data=temp->data;
+            root->right=deletion(root->right,temp->data);
+        
+    }
+    return root;
 }
 int main(){
     Node *root=NULL;
@@ -56,4 +100,6 @@ int main(){
     cout<<x<<endl;
     int y=minVal(root);
     cout<<y<<endl;
+    root=deletion(root,4);
+    inOrder(root);
 }

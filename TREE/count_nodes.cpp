@@ -25,7 +25,7 @@ int height(Node *root){
     int right=height(root->right);
     return max(left,right)+1;
 }
-void deleteDeepest(Node *root, Node *key){
+void deleteDeepest(Node *root, Node *key){// deletion function takes place here
     if(!root)return;
     queue<Node *>q;
     q.push(root);
@@ -60,6 +60,7 @@ void deleteDeepest(Node *root, Node *key){
         }
     }
 }
+//swappin of the last leaf node val takes place here
 Node *deleteNode(Node *root, int key){//to find the node with the given value and pass it to the deletedeepest function
     if(!root)return nullptr;
     if(!root->left && !root->right){//only level order traversal done
@@ -67,7 +68,7 @@ Node *deleteNode(Node *root, int key){//to find the node with the given value an
         delete root;
         return nullptr;
         }
-        return root;
+        
     }
     queue<Node *>q;
     q.push(root);
