@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 class Node{
     public:
@@ -24,6 +25,74 @@ int height(Node *root){
     int right=height(root->right);
     return max(left,right)+1;
 }
+void deleteDeepest(Node *root, Node *key){
+    if(!root)return;
+    queue<Node *>q;
+    q.push(root);
+    while(!q.empty()){
+        Node *t=q.front();
+        q.pop();
+        if(t==key){
+            t=nullptr;
+            delete key;
+            return;
+        }
+        if(t->left){
+        if(t->left==key){
+            t->left=nullptr;
+            delete key;
+            return;
+
+        }
+        else{
+            q.push(t->left);
+        }
+        }
+        if(t->right){
+            if(t->right==key){
+                t->right=nullptr;
+                delete key;
+                return;
+            }
+            else{
+                q.push(t->right);
+            }
+        }
+    }
+}
+Node *deleteNode(Node *root, int key){//to find the node with the given value and pass it to the deletedeepest function
+    if(!root)return nullptr;
+    if(!root->left && !root->right){//only level order traversal done
+        if(root->data==key){
+        delete root;
+        return nullptr;
+        }
+        return root;
+    }
+    queue<Node *>q;
+    q.push(root);
+    Node *keyNode=nullptr;
+    Node *t=nullptr;
+    while(!q.empty()){
+        t=q.front();
+        q.pop();
+        if(root->data==key)keyNode=root;
+        if(t->left) q.push(t->left);
+        if(t->right)q.push(t->right);
+    }
+    // t is the deepest node
+    int val=t->data;
+    deleteDeepest(root,t);
+    keyNode->data=val;
+    return root;
+}
+void inOrder(Node *root){
+    if(!root)return;
+    inOrder(root->left);
+    cout<<root->data<<' ';
+    inOrder(root->right);
+
+}
 int main(){
     Node *root=new Node(1);
     root->left=new Node(2);
@@ -39,4 +108,8 @@ int main(){
     cout<<y<<endl;
     int z=height(root);
     cout<<z<<endl;
+    inOrder(root);
+    cout<<endl;
+    deleteNode(root,1);
+    inOrder(root);
 }
