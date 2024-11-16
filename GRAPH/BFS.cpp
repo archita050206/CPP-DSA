@@ -35,8 +35,12 @@ vector<int> bfsTraversal(int n){
     vector<bool>isVisited(n,false);
     queue<int>q;
     //start bfs from node 0
-    q.push(0);
-    isVisited[0]=true;
+    
+    for(int i=0;i<n;i++){
+        if(!isVisited[i]){
+            q.push(i);
+            isVisited[i]=true;
+        
     while(!q.empty()){
        int curr= q.front();
        q.pop();
@@ -49,6 +53,8 @@ vector<int> bfsTraversal(int n){
                 isVisited[neighbour]=true;
             }
         }
+    }
+    }
     }
     return result;
 }
