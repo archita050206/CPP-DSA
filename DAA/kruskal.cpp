@@ -35,7 +35,7 @@ int Find(int u, int s[]){
  
     while (u != x){
         v = s[u];
-        s[u] = x;
+        s[u] = x;   
         u = v;
     }
     return x;
